@@ -1,7 +1,7 @@
 import psycopg2
 
 
-def execute(self, query: str) -> None:
+def execute(self, query: str, params: tuple = None) -> None:
     """
     - Use psycopg2 to execute a query & commit it to the database
 
@@ -15,7 +15,10 @@ def execute(self, query: str) -> None:
     connection = psycopg2.connect(self.uri)
     cursor = connection.cursor()
 
-    cursor.execute(query)
+    if params:
+        cursor.execute(query, params)
+    else:
+        cursor.execute(query)
 
     cursor.close()
     connection.commit()
