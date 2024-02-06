@@ -1,5 +1,8 @@
 import click
-from pg_data_etl.settings.make_config_file import make_config_file as _make_config_file
+from pg_data_etl.settings.make_config_file import (
+    make_config_file as _make_config_file,
+    DB_CONFIG_FILEPATH,
+)
 
 
 @click.group()
@@ -10,9 +13,14 @@ def main():
 
 @click.command()
 @click.option("--overwrite/--no-overwrite", default=False)
-def make_config_file(overwrite):
+@click.option(
+    "--filepath",
+    default=str(DB_CONFIG_FILEPATH),
+    help="Custom file path for the config file",
+)
+def make_config_file(overwrite, filepath):
     """Make a configuration file from the template"""
-    _make_config_file(overwrite=overwrite)
+    _make_config_file(filepath=filepath, overwrite=overwrite)
 
 
 all_commands = [make_config_file]

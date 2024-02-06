@@ -34,20 +34,17 @@ def read_config_file(filepath: Path | str = DB_CONFIG_FILEPATH) -> dict:
     return all_hosts
 
 
-def configurations(filepath: Path | str = DB_CONFIG_FILEPATH, verbose: bool = False) -> dict:
+def configurations(
+    filepath: Path | str = DB_CONFIG_FILEPATH, verbose: bool = False
+) -> dict:
     """
-    - Load the configuration data from file
+    Load the configuration data from file
     - If the file does not exist yet, generate the template into the filepath provided by the user
-
-    Arguments:
-        filepath (Path | str): a Path or filepath as string to the configuration file
-        verbose (bool): flag that will print out the path of the configuration file used
-
-    Returns:
-        dict: with all connection info keyed by cluster
     """
+    filepath = Path(filepath)
+
     if not filepath.exists():
-        make_config_file(filepath)
+        make_config_file(filepath=filepath)
 
     if verbose:
         print(f"Loading db configurations from {filepath}")
