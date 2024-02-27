@@ -201,8 +201,8 @@ class Database:
     @classmethod
     def from_config(
         cls,
-        db_name: str,
         config_key: str,
+        db_name: str | None = None,
         config_filepath: str | None = None,
         bin_paths: dict | None = None,
     ) -> Database:
@@ -214,7 +214,7 @@ class Database:
         else:
             config = configurations()
 
-        return cls.from_parameters(db_name=db_name, bin_paths=bin_paths, **config[config_key])
+        return cls.from_parameters(bin_paths=bin_paths, **config[config_key])
 
     # Administration
     # --------------

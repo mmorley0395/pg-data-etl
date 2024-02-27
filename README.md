@@ -105,6 +105,7 @@ super_pw = this-is-another-placeholder-password
 host = localhost
 un = postgres
 pw = your-password-here
+db_name = dbname # this is not in the default file created yet. but was added to make db name part of config file if omitted.
 ```
 
 Each entry in square brackets is a named connection, and any parameters not explicitly defined are inherited from `DEFAULT`.
@@ -114,6 +115,8 @@ You can have as many connections defined as you'd like, and you can use them lik
 >>> from pg_data_etl import Database
 >>> db = Database.from_config("sample_database", "localhost")
 ```
+
+As noted in db_name comment, if the db name is omitted, it will need to be supplied in the config file. Otherwise you can pass it as shown above this line.
 
 ## Development
 
