@@ -202,8 +202,8 @@ class Database:
     def from_config(
         cls,
         config_key: str,
-        db_name: str | None = None,
         config_filepath: str | None = None,
+        db_name: str | None = None,
         bin_paths: dict | None = None,
     ) -> Database:
         """
